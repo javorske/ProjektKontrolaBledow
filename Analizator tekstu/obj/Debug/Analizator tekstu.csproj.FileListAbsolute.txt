@@ -1,0 +1,6 @@
+C:\Users\ASUS\source\repos\Analizator tekstu\Analizator tekstu\obj\Debug\Analizator tekstu.csprojAssemblyReference.cache
+C:\Users\ASUS\source\repos\Analizator tekstu\Analizator tekstu\bin\Debug\Analizator tekstu.exe.config
+C:\Users\ASUS\source\repos\Analizator tekstu\Analizator tekstu\bin\Debug\Analizator tekstu.exe
+C:\Users\ASUS\source\repos\Analizator tekstu\Analizator tekstu\bin\Debug\Analizator tekstu.pdb
+C:\Users\ASUS\source\repos\Analizator tekstu\Analizator tekstu\obj\Debug\Analizator tekstu.exe
+C:\Users\ASUS\source\repos\Analizator tekstu\Analizator tekstu\obj\Debug\Analizator tekstu.pdb
