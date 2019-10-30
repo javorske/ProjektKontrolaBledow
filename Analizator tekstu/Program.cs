@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Analizator_tekstu
 {
@@ -42,6 +43,7 @@ namespace Analizator_tekstu
                             getFileFromInternet(urlPath, filePath);
                             break;
                         case 2:
+                            getNumberOfLetters();
                             break;
                         case 3:
                             break;
@@ -62,8 +64,7 @@ namespace Analizator_tekstu
                 {
                     // checking if exception occured
                     Console.WriteLine("Nie wybrano zadnej opcji, badz podano zly znak.");
-                    Console.ReadKey();
-                    Console.Clear();
+                    waitForUser();
                 }
             } while (checkForExit);
         }
@@ -76,6 +77,24 @@ namespace Analizator_tekstu
         {
             WebClient webClient = new WebClient();
             webClient.DownloadFile(urlPath, fileName);
+        }
+        public static void getNumberOfLetters()
+        {
+            try
+            {
+                string textFromFile = System.IO.File.ReadAllText("File.txt");
+                Console.WriteLine("This file contains: " + textFromFile.Count(char.IsLetter) + " letters");
+            }
+            catch (FileNotFoundException)
+            {   // in case the file has not been downloaded/does not exist
+                Console.WriteLine("File does not exist.");
+            }
+            waitForUser();
+        }
+        public static void waitForUser()
+        {
+            Console.ReadKey();
+            Console.Clear();
         }
     }
 }
