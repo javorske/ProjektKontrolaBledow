@@ -46,6 +46,7 @@ namespace Analizator_tekstu
                             getNumberOfLetters();
                             break;
                         case 3:
+                            countNumberOfWords(filePath);
                             break;
                         case 4:
                             break;
@@ -95,6 +96,15 @@ namespace Analizator_tekstu
         {
             Console.ReadKey();
             Console.Clear();
+        }
+        /// <summary>
+        /// Count number of words in given file.
+        /// </summary>
+        /// <param name="fileName"></param>
+        public static void countNumberOfWords(string fileName)
+        {
+            Console.WriteLine(string.Format("Liczba słow wynosi:{0}", File.ReadAllText(fileName).Split(' ').Length));
+            Console.ReadKey();
         }
     }
 }
