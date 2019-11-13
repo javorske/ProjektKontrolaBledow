@@ -41,13 +41,13 @@ namespace Analizator_tekstu
                     switch (option)
                     {
                         case 1:
-                            getFileFromInternet(urlPath, filePath);
+                            GetFileFromInternet(urlPath, filePath);
                             break;
                         case 2:
                             getNumberOfLetters();
                             break;
                         case 3:
-                            countNumberOfWords(filePath);
+                            CountNumberOfWords(filePath);
                             break;
                         case 4:
                             CountNumberOfPunctationMarks(filePath);
@@ -75,12 +75,19 @@ namespace Analizator_tekstu
         /// <summary>
         /// Download and save file form given url to given file name
         /// </summary>
-        /// <param name="urlPath"></param>
-        /// <param name="fileName"></param>
-        public static void getFileFromInternet(string urlPath, string fileName)
+        /// <param name="urlPath">Url path to file.</param>
+        /// <param name="fileName">File name.</param>
+        public static void GetFileFromInternet(string urlPath, string fileName)
         {
-            WebClient webClient = new WebClient();
-            webClient.DownloadFile(urlPath, fileName);
+            try
+            {
+                WebClient webClient = new WebClient();
+                webClient.DownloadFile(urlPath, fileName);
+            }
+            catch (WebException err)
+            {
+                Console.WriteLine(string.Format("Error code:{0}", err));
+            }
         }
         public static void getNumberOfLetters()
         {
@@ -103,11 +110,21 @@ namespace Analizator_tekstu
         /// <summary>
         /// Count number of words in given file.
         /// </summary>
-        /// <param name="fileName"></param>
-        public static void countNumberOfWords(string fileName)
+        /// <param name="fileName">File name.</param>
+        public static void CountNumberOfWords(string fileName)
         {
-            Console.WriteLine(string.Format("Liczba słow wynosi:{0}", File.ReadAllText(fileName).Split(' ').Length));
-            Console.ReadKey();
+            try
+            {
+                string[] file = File.ReadAllText(fileName).Split(' ');
+                Console.WriteLine(string.Format("Liczba słow wynosi:{0}", file.Where(x => Regex.IsMatch(x, "[a-z]", RegexOptions.IgnoreCase)).Count()));
+            }
+            catch (FileNotFoundException err)
+            {
+                Console.WriteLine(string.Format("Error code:/n{0}", err));
+
+            }
+
+            waitForUser();
         }
         /// <summary>
         /// Count number of punctation marks in given file.
