@@ -53,6 +53,7 @@ namespace Analizator_tekstu
                             CountNumberOfPunctationMarks(filePath);
                             break;
                         case 5:
+                            CountNumberOfSentences(filePath);
                             break;
                         case 6:
                             break;
@@ -117,6 +118,23 @@ namespace Analizator_tekstu
             try
             {
                 Console.WriteLine(string.Format("Liczba znakow interpunkcyjnych wynosi: {0}", (Regex.Matches(File.ReadAllText(fileName), @"[\p{P}]").Count)));
+                Console.ReadKey();
+            }
+            catch (FileNotFoundException)
+            {
+                // in case the file has not been downloaded/does not exist
+                Console.WriteLine("File does not exist.");
+            }
+        }
+        /// <summary>
+        /// Count number of sentences in given file.
+        /// </summary>
+        /// <param name="fileName"></param>
+        public static void CountNumberOfSentences(string fileName)
+        {
+            try
+            {
+                Console.WriteLine(string.Format("Liczba zdan wynosi: {0}", (Regex.Matches(File.ReadAllText(fileName), @"(?<=[.!?])\s?([A-Z]?)").Count)));
                 Console.ReadKey();
             }
             catch (FileNotFoundException)
