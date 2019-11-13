@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Analizator_tekstu
 {
@@ -49,6 +50,7 @@ namespace Analizator_tekstu
                             countNumberOfWords(filePath);
                             break;
                         case 4:
+                            CountNumberOfPunctationMarks(filePath);
                             break;
                         case 5:
                             break;
@@ -105,6 +107,23 @@ namespace Analizator_tekstu
         {
             Console.WriteLine(string.Format("Liczba słow wynosi:{0}", File.ReadAllText(fileName).Split(' ').Length));
             Console.ReadKey();
+        }
+        /// <summary>
+        /// Count number of punctation marks in given file.
+        /// </summary>
+        /// <param name="fileName"></param>
+        public static void CountNumberOfPunctationMarks(string fileName)
+        {
+            try
+            {
+                Console.WriteLine(string.Format("Liczba znakow interpunkcyjnych wynosi: {0}", (Regex.Matches(File.ReadAllText(fileName), @"[\p{P}]").Count)));
+                Console.ReadKey();
+            }
+            catch (FileNotFoundException)
+            {
+                // in case the file has not been downloaded/does not exist
+                Console.WriteLine("File does not exist.");
+            }
         }
     }
 }

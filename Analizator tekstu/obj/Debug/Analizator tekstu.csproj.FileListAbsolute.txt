@@ -10,3 +10,10 @@ C:\Users\ASUS\Desktop\Nowy folder\ProjektKontrolaBledow\Analizator tekstu\bin\De
 C:\Users\ASUS\Desktop\Nowy folder\ProjektKontrolaBledow\Analizator tekstu\obj\Debug\Analizator tekstu.csprojAssemblyReference.cache
 C:\Users\ASUS\Desktop\Nowy folder\ProjektKontrolaBledow\Analizator tekstu\obj\Debug\Analizator tekstu.exe
 C:\Users\ASUS\Desktop\Nowy folder\ProjektKontrolaBledow\Analizator tekstu\obj\Debug\Analizator tekstu.pdb
+C:\Users\Komp\Desktop\Projekt\ProjektKontrolaBledow\Analizator tekstu\bin\Debug\Analizator tekstu.exe.config
+C:\Users\Komp\Desktop\Projekt\ProjektKontrolaBledow\Analizator tekstu\bin\Debug\Analizator tekstu.exe
+C:\Users\Komp\Desktop\Projekt\ProjektKontrolaBledow\Analizator tekstu\bin\Debug\Analizator tekstu.pdb
+C:\Users\Komp\Desktop\Projekt\ProjektKontrolaBledow\Analizator tekstu\obj\Debug\Analizator tekstu.csprojAssemblyReference.cache
+C:\Users\Komp\Desktop\Projekt\ProjektKontrolaBledow\Analizator tekstu\obj\Debug\Analizator tekstu.csproj.CoreCompileInputs.cache
+C:\Users\Komp\Desktop\Projekt\ProjektKontrolaBledow\Analizator tekstu\obj\Debug\Analizator tekstu.exe
+C:\Users\Komp\Desktop\Projekt\ProjektKontrolaBledow\Analizator tekstu\obj\Debug\Analizator tekstu.pdb
