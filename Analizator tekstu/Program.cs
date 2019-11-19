@@ -19,6 +19,10 @@ namespace Analizator_tekstu
         /// The name of file.
         /// </summary>
         public static string filePath { get; set; } = "File.txt";
+        /// <summary>
+        /// If downloading of file succeded, change value to true.
+        /// </summary>
+        public static bool checkFile { get; set; } = false;
         static void Main(string[] args)
         {
             int option; //it needs to be assigned from the beginnig
@@ -35,6 +39,7 @@ namespace Analizator_tekstu
                 Console.WriteLine("6. Wygeneruj raport o użyciu liter (A-Z)");
                 Console.WriteLine("7. Zapisz statystyki z punktów 2-5 do pliku statystyki.txt.");
                 Console.WriteLine("8. Wyjście z programu.");
+
                 try
                 {
                     option = int.Parse(Console.ReadLine());
@@ -44,18 +49,24 @@ namespace Analizator_tekstu
                             GetFileFromInternet(urlPath, filePath);
                             break;
                         case 2:
-                            getNumberOfLetters();
+                            Console.WriteLine(GetNumberOfLetters(filePath));
+                            Console.ReadKey();
                             break;
                         case 3:
-                            CountNumberOfWords(filePath);
+                            Console.WriteLine(CountNumberOfWords(filePath));
+                            Console.ReadKey();
                             break;
                         case 4:
-                            CountNumberOfPunctationMarks(filePath);
+                            Console.WriteLine(CountNumberOfPunctationMarks(filePath));
+                            Console.ReadKey();
                             break;
                         case 5:
-                            CountNumberOfSentences(filePath);
+                            Console.WriteLine(CountNumberOfSentences(filePath));
+                            Console.ReadKey();
                             break;
                         case 6:
+                            Console.WriteLine(GenerateLetterCountReport(filePath));
+                            Console.ReadKey();
                             break;
                         case 7:
                             break;
@@ -64,14 +75,14 @@ namespace Analizator_tekstu
                             break;
                     }
                 }
-                    catch (FormatException)
+                catch (FormatException)
                 {
                     // checking if exception occured
                     Console.WriteLine("Nie wybrano zadnej opcji, badz podano zly znak.");
-                    waitForUser();
                 }
             } while (checkForExit);
         }
+
         /// <summary>
         /// Download and save file form given url to given file name
         /// </summary>
@@ -89,75 +100,114 @@ namespace Analizator_tekstu
                 Console.WriteLine(string.Format("Error code:{0}", err));
             }
         }
-        public static void getNumberOfLetters()
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fileName"></param>
+        public static string GetNumberOfLetters(string fileName)
         {
-            try
+            if (CheckIfFileExists(filePath))
             {
-                string textFromFile = System.IO.File.ReadAllText("File.txt");
-                Console.WriteLine("This file contains: " + textFromFile.Count(char.IsLetter) + " letters");
+                string textFromFile = File.ReadAllText(fileName);
+                return ("Ten plik zawiera: " + textFromFile.Count(char.IsLetter) + " liter");
             }
-            catch (FileNotFoundException)
-            {   // in case the file has not been downloaded/does not exist
-                Console.WriteLine("File does not exist.");
-            }
-            waitForUser();
+
+            return string.Empty;
         }
-        public static void waitForUser()
-        {
-            Console.ReadKey();
-            Console.Clear();
-        }
+
         /// <summary>
         /// Count number of words in given file.
         /// </summary>
-        /// <param name="fileName">File name.</param>
-        public static void CountNumberOfWords(string fileName)
+        /// <param name="fileName"></param>
+        public static string CountNumberOfWords(string fileName)
         {
-            try
+            if (CheckIfFileExists(filePath))
             {
                 string[] file = File.ReadAllText(fileName).Split(' ');
-                Console.WriteLine(string.Format("Liczba słow wynosi:{0}", file.Where(x => Regex.IsMatch(x, "[a-z]", RegexOptions.IgnoreCase)).Count()));
-            }
-            catch (FileNotFoundException err)
-            {
-                Console.WriteLine(string.Format("Error code:/n{0}", err));
-
+                return (string.Format("Liczba słow wynosi:{0}", file.Where(x => Regex.IsMatch(x, "[a-z]", RegexOptions.IgnoreCase)).Count()));
             }
 
-            waitForUser();
+            return string.Empty;
         }
+
         /// <summary>
         /// Count number of punctation marks in given file.
         /// </summary>
         /// <param name="fileName"></param>
-        public static void CountNumberOfPunctationMarks(string fileName)
+        public static string CountNumberOfPunctationMarks(string fileName)
         {
-            try
+            if (CheckIfFileExists(filePath))
             {
-                Console.WriteLine(string.Format("Liczba znakow interpunkcyjnych wynosi: {0}", (Regex.Matches(File.ReadAllText(fileName), @"[\p{P}]").Count)));
-                Console.ReadKey();
+                return (string.Format("Liczba znakow interpunkcyjnych wynosi: {0}", (Regex.Matches(File.ReadAllText(fileName), @"[\p{P}]").Count)));
             }
-            catch (FileNotFoundException)
-            {
-                // in case the file has not been downloaded/does not exist
-                Console.WriteLine("File does not exist.");
-            }
+
+            return string.Empty;
         }
+
         /// <summary>
         /// Count number of sentences in given file.
         /// </summary>
         /// <param name="fileName"></param>
-        public static void CountNumberOfSentences(string fileName)
+        public static string CountNumberOfSentences(string fileName)
         {
-            try
+            if (CheckIfFileExists(filePath))
             {
-                Console.WriteLine(string.Format("Liczba zdan wynosi: {0}", (Regex.Matches(File.ReadAllText(fileName), @"(?<=[.!?])\s?([A-Z]?)").Count)));
-                Console.ReadKey();
+                return (string.Format("Liczba zdan wynosi: {0}", (Regex.Matches(File.ReadAllText(fileName), @"(?<=[.!?])\s?([A-Z]?)").Count)));
             }
-            catch (FileNotFoundException)
+
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// Generates report of number of each letter that given file contains.
+        /// </summary>
+        /// <param name="fileName"></param>
+        public static string GenerateLetterCountReport(string fileName)
+        {
+            if (CheckIfFileExists(filePath))
             {
-                // in case the file has not been downloaded/does not exist
-                Console.WriteLine("File does not exist.");
+                int[] arrayOfLetters = new int[(int)char.MaxValue];
+                string textFromFile = File.ReadAllText(fileName);
+
+                foreach (char letter in textFromFile)
+                {
+                    if (letter >= 'A' && letter <= 'z')
+                    {
+                        arrayOfLetters[(int)letter]++;
+                    }
+                }
+
+                string textToDisplay = "";
+
+                for (char letter = 'A'; letter <= 'z'; letter++)
+                {
+                    if (Char.IsLetter(letter))
+                    {
+                        textToDisplay += ((char)letter + " : " + arrayOfLetters[letter] + "\n");
+                    }
+                }
+
+                return textToDisplay;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// Check if file is downloaded or exists.
+        /// </summary>
+        /// <param name="fileName"></param>
+        public static bool CheckIfFileExists(string fileName)
+        {
+            if (File.Exists(fileName) || checkFile)
+            {
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Plik nie został pobrany, bądź nie istnieje.");
+                return false;
             }
         }
     }
