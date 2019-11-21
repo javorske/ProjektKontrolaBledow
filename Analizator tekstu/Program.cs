@@ -73,7 +73,7 @@ namespace Analizator_tekstu
                             Console.ReadKey();
                             break;
                         case 8: //  exit from program
-                            checkForExit = false;
+                            CloseProgram();
                             break;
                     }
                 }
@@ -228,6 +228,30 @@ namespace Analizator_tekstu
                     sw.WriteLine(CountNumberOfSentences(filePath));
                 }
                 Console.WriteLine("Informacje z punktow 2-5 zostaly zapisane/nadpisane do pliku statystyki.txt");
+            }
+        }
+        /// <summary>
+        /// This function will close the program.
+        /// </summary>
+        /// <returns>Return true for closeing app</returns>
+        public static void CloseProgram()
+        {
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+
+            if (File.Exists("statystyki.txt"))
+            {
+                File.Delete("statystyki.txt");
+            }
+            try
+            {
+                Environment.Exit(0);
+            }
+            catch (Exception a)
+            {
+                throw;
             }
         }
     }
