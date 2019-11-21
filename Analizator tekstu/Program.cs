@@ -69,6 +69,8 @@ namespace Analizator_tekstu
                             Console.ReadKey();
                             break;
                         case 7:
+                            StatisticsFile();
+                            Console.ReadKey();
                             break;
                         case 8: //  exit from program
                             checkForExit = false;
@@ -208,6 +210,24 @@ namespace Analizator_tekstu
             {
                 Console.WriteLine("Plik nie został pobrany, bądź nie istnieje.");
                 return false;
+            }
+        }
+        /// <summary>
+        /// Creates/overwrite a statystyki.txt file with information from points 2-5.
+        /// </summary>
+        public static void StatisticsFile()
+        {
+            if (CheckIfFileExists(filePath))
+            {
+                string statisticsPath = "statystyki.txt";
+                using (StreamWriter sw = File.CreateText(statisticsPath))
+                {
+                    sw.WriteLine(GetNumberOfLetters(filePath));
+                    sw.WriteLine(CountNumberOfWords(filePath));
+                    sw.WriteLine(CountNumberOfPunctationMarks(filePath));
+                    sw.WriteLine(CountNumberOfSentences(filePath));
+                }
+                Console.WriteLine("Informacje z punktow 2-5 zostaly zapisane/nadpisane do pliku statystyki.txt");
             }
         }
     }
