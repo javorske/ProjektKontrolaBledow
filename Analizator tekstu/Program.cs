@@ -233,7 +233,7 @@ namespace Analizator_tekstu
         /// <summary>
         /// This function will close the program.
         /// </summary>
-        /// <returns>Return true for closeing app</returns>
+        /// <returns>Return true for closing app</returns>
         public static void CloseProgram()
         {
             if (File.Exists(filePath))
@@ -249,9 +249,9 @@ namespace Analizator_tekstu
             {
                 Environment.Exit(0);
             }
-            catch (Exception a)
+            catch (Exception err)
             {
-                throw;
+                throw err;
             }
         }
     }
