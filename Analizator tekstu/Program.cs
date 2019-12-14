@@ -171,10 +171,23 @@ namespace Analizator_tekstu
             if (CheckIfFileExists(filePath))
             {
                 string[] file = File.ReadAllText(fileName).Split(' ');
-                return (string.Format("Liczba słow wynosi:{0}", file.Where(x => Regex.IsMatch(x, "[a-z]", RegexOptions.IgnoreCase)).Count()));
+                Console.WriteLine(string.Format("Liczba słow wynosi:{0}", file.Where(x => Regex.IsMatch(x, "[a-z]", RegexOptions.IgnoreCase)).Count()));
             }
 
-            return string.Empty;
+            int counter = 0;
+            if (CheckIfFileExists(filePath))
+            {
+                string[] file = File.ReadAllText(fileName).Split(' ');
+                for (int i = 0; i < file.Length; i++)
+                {
+                    if (file[i].Length > 1)
+                    {
+                        counter++;
+                    }
+                }
+            }
+            Console.WriteLine();
+            return "Liczba wyrazów liczona bez słów składających się z pojedynczej litery wynosi: " + counter;
         }
 
         /// <summary>
