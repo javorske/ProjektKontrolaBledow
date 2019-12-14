@@ -282,7 +282,7 @@ namespace Analizator_tekstu
                 {
                     sw.WriteLine(string.Format("Liczba Liter: {0}",GetNumberOfLetters(filePath)[2]));
                     sw.WriteLine(string.Format("Liczba slow: {0}",CountNumberOfWords(filePath)));
-                    sw.WriteLine(string.Format("Liczba znakow interpunkcyjnych:{0}",CountNumberOfPunctationMarks(filePath)));
+                    sw.WriteLine(string.Format("{0}",CountNumberOfPunctationMarks(filePath)));
                     sw.WriteLine(string.Format("Liczba zdan: {0}",CountNumberOfSentences(filePath)));
                     sw.WriteLine(string.Format("Liczba samoglosek {0}", GetNumberOfLetters(filePath)[0]));
                     sw.WriteLine(string.Format("Liczba wspolglosek {0}",GetNumberOfLetters(filePath)[1]));
