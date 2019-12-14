@@ -139,7 +139,24 @@ namespace Analizator_tekstu
             if (CheckIfFileExists(filePath))
             {
                 string textFromFile = File.ReadAllText(fileName);
-                return ("Ten plik zawiera: " + textFromFile.Count(char.IsLetter) + " liter");
+                Console.WriteLine("Ten plik zawiera: " + textFromFile.Count(char.IsLetter) + " liter");
+
+                //Zmiana wymagania związanego z liczeniem liter. Osobne zliczanie samogłosek i spółgłosek
+                int vowel = 0;
+                int cons = 0;
+                for (int i = 0; i < textFromFile.Length; i++)
+                {
+                    if (textFromFile[i] == 'a' || textFromFile[i] == 'e' || textFromFile[i] == 'i' || textFromFile[i] == 'o' || textFromFile[i] == 'u' || textFromFile[i] == 'A' || textFromFile[i] == 'E' || textFromFile[i] == 'I' || textFromFile[i] == 'O' || textFromFile[i] == 'U')
+                    {
+                        vowel++;
+                    }
+                    else if ((textFromFile[i] >= 'a' && textFromFile[i] <= 'z') || (textFromFile[i] >= 'A' && textFromFile[i] <= 'Z'))
+                    {
+                        cons++;
+                    }
+                }
+                Console.WriteLine("Ten plik zawiera: " + vowel.ToString() + " samogłosek");
+                Console.WriteLine("Ten plik zawiera: " + cons.ToString() + " spółgłosek");
             }
 
             return string.Empty;
