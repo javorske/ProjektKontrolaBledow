@@ -14,11 +14,12 @@ namespace Analizator_tekstu
         /// <summary>
         /// The url path to file.
         /// </summary>
-        public static string urlPath { get; set; } = "https://s3.zylowski.net/public/input/1.txt";
+        public static string urlPath { get; set; }
+        //https://s3.zylowski.net/public/input/1.txt
         /// <summary>
         /// The name of file.
         /// </summary>
-        public static string filePath { get; set; } = "File.txt";
+        public static string filePath { get; set; } = "Plik.txt";
         /// <summary>
         /// If downloading of file succeded, change value to true.
         /// </summary>
@@ -31,7 +32,7 @@ namespace Analizator_tekstu
             {
                 // menu displayed in console
                 Console.Clear();
-                Console.WriteLine("1. Pobierz plik z internetu.");
+                Console.WriteLine("1.Wybierz plik wejściowy");
                 Console.WriteLine("2. Zlicz liczbę liter w pobranym pliku.");
                 Console.WriteLine("3. Zlicz liczbę wyrazów w pliku.");
                 Console.WriteLine("4. Zlicz liczbę znaków interpunkcyjnych w pliku.");
@@ -46,7 +47,7 @@ namespace Analizator_tekstu
                     switch (option)
                     {
                         case 1:
-                            GetFileFromInternet(urlPath, filePath);
+                            GetFile(filePath);
                             break;
                         case 2:
                             Console.WriteLine(GetNumberOfLetters(filePath));
@@ -90,17 +91,42 @@ namespace Analizator_tekstu
         /// </summary>
         /// <param name="urlPath">Url path to file.</param>
         /// <param name="fileName">File name.</param>
-        public static void GetFileFromInternet(string urlPath, string fileName)
+        /// <param name="decision">Defines if user wants to download file from internet</param>
+        public static void GetFile(string fileName)
         {
-            try
+            Console.WriteLine("Pobrać plik z internetu? [T/N]");
+            char decision = Convert.ToChar(Console.ReadLine());
+            if (decision == 'T')
             {
-                WebClient webClient = new WebClient();
-                webClient.DownloadFile(urlPath, fileName);
+                Console.WriteLine("Podaj adres pliku tekstowego");                
+                try
+                {
+                    urlPath = Console.ReadLine();
+                    WebClient webClient = new WebClient();
+                    webClient.DownloadFile(urlPath, fileName);
+                }
+                catch (WebException err)
+                {
+                    Console.WriteLine(string.Format("Error code:{0}", err));
+                }
             }
-            catch (WebException err)
+            else
             {
-                Console.WriteLine(string.Format("Error code:{0}", err));
+                try
+                {
+                    Console.WriteLine("Podaj nazwę pliku znajdującego się na dysku:");
+                    fileName = Console.ReadLine();
+                    Console.WriteLine(File.Exists(fileName) ? "File exists." : "File does not exist.");
+                    Console.ReadKey();
+                }
+                catch (Exception err)
+                {
+                    Console.WriteLine(string.Format("Error code:{0}", err));
+                    Console.ReadKey();
+                }
+                
             }
+            
         }
 
         /// <summary>
