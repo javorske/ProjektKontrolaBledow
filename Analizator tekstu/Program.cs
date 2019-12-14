@@ -212,7 +212,7 @@ namespace Analizator_tekstu
         {
             if (CheckIfFileExists(filePath))
             {
-                return (string.Format("Liczba zdan wynosi: {0}", (Regex.Matches(File.ReadAllText(fileName), @"(?<=[.!?])\s?([A-Z]?)").Count)));
+                return (string.Format("Liczba zdan wynosi: {0}", (Regex.Matches(File.ReadAllText(fileName), @"(?<=[.?])\s?([A-Z]?)").Count)));
             }
 
             return string.Empty;
