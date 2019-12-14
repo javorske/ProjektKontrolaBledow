@@ -134,7 +134,7 @@ namespace Analizator_tekstu
         /// 
         /// </summary>
         /// <param name="fileName"></param>
-        public static string GetNumberOfLetters(string fileName)
+                public static string[] GetNumberOfLetters(string fileName)
         {
             if (CheckIfFileExists(filePath))
             {
@@ -157,9 +157,10 @@ namespace Analizator_tekstu
                 }
                 Console.WriteLine("Ten plik zawiera: " + vowel.ToString() + " samogłosek");
                 Console.WriteLine("Ten plik zawiera: " + cons.ToString() + " spółgłosek");
+                return new string[] { vowel.ToString(), cons.ToString(), (vowel+cons).ToString() };
             }
 
-            return string.Empty;
+            return null;
         }
 
         /// <summary>
@@ -279,10 +280,13 @@ namespace Analizator_tekstu
                 string statisticsPath = "statystyki.txt";
                 using (StreamWriter sw = File.CreateText(statisticsPath))
                 {
-                    sw.WriteLine(GetNumberOfLetters(filePath));
-                    sw.WriteLine(CountNumberOfWords(filePath));
-                    sw.WriteLine(CountNumberOfPunctationMarks(filePath));
-                    sw.WriteLine(CountNumberOfSentences(filePath));
+                    sw.WriteLine(string.Format("Liczba Liter: {0}",GetNumberOfLetters(filePath)[2]));
+                    sw.WriteLine(string.Format("Liczba slow: {0}",CountNumberOfWords(filePath)));
+                    sw.WriteLine(string.Format("{0}",CountNumberOfPunctationMarks(filePath)));
+                    sw.WriteLine(string.Format("Liczba zdan: {0}",CountNumberOfSentences(filePath)));
+                    sw.WriteLine(string.Format("Liczba samoglosek {0}", GetNumberOfLetters(filePath)[0]));
+                    sw.WriteLine(string.Format("Liczba wspolglosek {0}",GetNumberOfLetters(filePath)[1]));
+
                 }
                 Console.WriteLine("Informacje z punktow 2-5 zostaly zapisane/nadpisane do pliku statystyki.txt");
             }
