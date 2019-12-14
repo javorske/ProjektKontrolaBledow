@@ -32,7 +32,7 @@ namespace Analizator_tekstu
             {
                 // menu displayed in console
                 Console.Clear();
-                Console.WriteLine("1.Wybierz plik wejściowy");
+                Console.WriteLine("1. Wybierz plik wejściowy");
                 Console.WriteLine("2. Zlicz liczbę liter w pobranym pliku.");
                 Console.WriteLine("3. Zlicz liczbę wyrazów w pliku.");
                 Console.WriteLine("4. Zlicz liczbę znaków interpunkcyjnych w pliku.");
@@ -94,6 +94,7 @@ namespace Analizator_tekstu
         /// <param name="decision">Defines if user wants to download file from internet</param>
         public static void GetFile(string fileName)
         {
+            
             Console.WriteLine("Pobrać plik z internetu? [T/N]");
             char decision = Convert.ToChar(Console.ReadLine());
             if (decision == 'T')
