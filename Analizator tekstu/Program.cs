@@ -141,7 +141,7 @@ namespace Analizator_tekstu
         {
             if (CheckIfFileExists(filePath))
             {
-                return (string.Format("Liczba znakow interpunkcyjnych wynosi: {0}", (Regex.Matches(File.ReadAllText(fileName), @"[\p{P}]").Count)));
+                return (string.Format("Liczba znakow interpunkcyjnych wynosi: {0}", (Regex.Matches(File.ReadAllText(fileName), "[\\p{P}-[\\p{P}-[?.]]]").Count)));
             }
 
             return string.Empty;

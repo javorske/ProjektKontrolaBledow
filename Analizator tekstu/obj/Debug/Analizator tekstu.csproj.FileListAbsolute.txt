@@ -17,3 +17,10 @@ C:\Users\Komp\Desktop\Projekt\ProjektKontrolaBledow\Analizator tekstu\obj\Debug\
 C:\Users\Komp\Desktop\Projekt\ProjektKontrolaBledow\Analizator tekstu\obj\Debug\Analizator tekstu.csproj.CoreCompileInputs.cache
 C:\Users\Komp\Desktop\Projekt\ProjektKontrolaBledow\Analizator tekstu\obj\Debug\Analizator tekstu.exe
 C:\Users\Komp\Desktop\Projekt\ProjektKontrolaBledow\Analizator tekstu\obj\Debug\Analizator tekstu.pdb
+C:\Users\studentwsb\Documents\proj\ProjektKontrolaBledow-master\ProjektKontrolaBledow-master\Analizator tekstu\bin\Debug\Analizator tekstu.exe.config
+C:\Users\studentwsb\Documents\proj\ProjektKontrolaBledow-master\ProjektKontrolaBledow-master\Analizator tekstu\bin\Debug\Analizator tekstu.exe
+C:\Users\studentwsb\Documents\proj\ProjektKontrolaBledow-master\ProjektKontrolaBledow-master\Analizator tekstu\bin\Debug\Analizator tekstu.pdb
+C:\Users\studentwsb\Documents\proj\ProjektKontrolaBledow-master\ProjektKontrolaBledow-master\Analizator tekstu\obj\Debug\Analizator tekstu.csprojAssemblyReference.cache
+C:\Users\studentwsb\Documents\proj\ProjektKontrolaBledow-master\ProjektKontrolaBledow-master\Analizator tekstu\obj\Debug\Analizator tekstu.csproj.CoreCompileInputs.cache
+C:\Users\studentwsb\Documents\proj\ProjektKontrolaBledow-master\ProjektKontrolaBledow-master\Analizator tekstu\obj\Debug\Analizator tekstu.exe
+C:\Users\studentwsb\Documents\proj\ProjektKontrolaBledow-master\ProjektKontrolaBledow-master\Analizator tekstu\obj\Debug\Analizator tekstu.pdb
